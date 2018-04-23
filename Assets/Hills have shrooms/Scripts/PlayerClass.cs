@@ -131,9 +131,22 @@ public class PlayerClass : MonoBehaviour {
 	void FixedUpdate() {
 		Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		Vector3 pos = transform.position + charCtrl.center;
-		if (Physics.SphereCast(pos, charCtrl.height /2, transform.forward, out hit,20))
+		if (Physics.SphereCast(pos, charCtrl.height /2, transform.forward, out hit,20) && hit.transform.tag == tagCheck && attacking)
 		{
+			if (!raycasting){
+				raycasting = true;
+				timestamp = Time.time + 0.5f;
+			}
+			
 			print(hit.distance.ToString());
+			print("Atttacking:" + attacking.ToString());
+		}
+		else{
+				raycasting = false;
+		}
+		if (raycasting && Time.time >= timestamp) {
+			Destroy(hit.transform.gameObject);
+			Debug.Log("Dead");
 		}
 		// if (Physics.Raycast(transform.position, fwd, out hit, 30) && hit.transform.tag == tagCheck)
 		// {	
