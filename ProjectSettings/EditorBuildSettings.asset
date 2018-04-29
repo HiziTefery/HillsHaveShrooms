@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Hills have shrooms/Scenes/Forest.unity
+    guid: 098a34d9c68692342943067d2876f441
+  - enabled: 1
+    path: Assets/Hills have shrooms/Scenes/Maze.unity
+    guid: af03a4377f4c125478bf2f396710fcd8

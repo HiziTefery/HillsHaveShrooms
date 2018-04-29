@@ -17,11 +17,11 @@ public class PlayerClass : MonoBehaviour {
 
 	HealthMushroomClass healthShroom;
 	PoisonMushroomClass poisonShroom;
+	EnemyClass enemy;
 
 	public Text healthText;
 	public Text sanityText;
 	public Light flashlight;
-
 
 	private RaycastHit hit;
 	private string tagCheck = "enemy";
@@ -29,25 +29,19 @@ public class PlayerClass : MonoBehaviour {
 	private bool raycasting = false;
 	private bool attacking = false;
 
-	private float lightStep = 20.0f;
-
-	private float minLuminosity = 0; // min intensity
-	private float maxLuminosity = 50; // max intensity
-
-	private float luminositySteps = 0.005f; // factor when increasing / decreasing
-
-	private float shineDuration = 3; // wait 3 seconds when faded in
-
-	private bool isIncreasing;
-
-
 	// Use this for initialization
 	void Start () {
 		currentHealth = maxHealth;
 		currentSanity = maxSanity;
-		StartCoroutine(DecreaseHealth());
+		Scene currentScene = SceneManager.GetActiveScene();
+		string sceneName = currentScene.name;
+		if (sceneName == "Forest")
+		{
+			StartCoroutine(DecreaseHealth());
+			sanityText.text = "Sanity: " + maxSanity.ToString();
+			
+		}
 		healthText.text = "Health: " + maxHealth.ToString();
-		sanityText.text = "Sanity: " + maxSanity.ToString();
 		charCtrl = GetComponent<CharacterController>();
 	}
 
@@ -96,7 +90,17 @@ public class PlayerClass : MonoBehaviour {
 			Destroy(other.gameObject);
 			Debug.Log("Sanity:" + currentSanity.ToString());
 		}
+
+		// ENEMY CLLISION
+		else if(other.gameObject.tag == "enemy"){
+			Debug.Log("Damage dealt to player");
+			enemy = other.gameObject.GetComponent<EnemyClass>();
+			currentHealth -= enemy.GetDamege();
+			healthText.text = "Health: " + currentHealth.ToString();
+			Destroy(other.gameObject);
+		}
 	}	
+
 	// Update is called once per frame
 	void Update () {
 		// currentHealth -= healthDepletion *  Mathf.FloorToInt(Time.deltaTime);
@@ -131,7 +135,7 @@ public class PlayerClass : MonoBehaviour {
 	void FixedUpdate() {
 		Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		Vector3 pos = transform.position + charCtrl.center;
-		if (Physics.SphereCast(pos, charCtrl.height /2, transform.forward, out hit,20) && hit.transform.tag == tagCheck && attacking)
+		if (Physics.SphereCast(pos, charCtrl.height, transform.forward, out hit,20) && hit.transform.tag == tagCheck && attacking)
 		{
 			if (!raycasting){
 				raycasting = true;
@@ -148,23 +152,5 @@ public class PlayerClass : MonoBehaviour {
 			Destroy(hit.transform.gameObject);
 			Debug.Log("Dead");
 		}
-		// if (Physics.Raycast(transform.position, fwd, out hit, 30) && hit.transform.tag == tagCheck)
-		// {	
-		// 	if (!raycasting){
-		// 		raycasting = true;
-		// 		timestamp = Time.time + 0.5f;
-		// 	}
-		// 	print(raycasting.ToString());
-		// 	print("There is something in front of the object!");
-		// 	print(timestamp.ToString());
-		// }
-		// else{
-		// 	raycasting = false;
-		// }
-
-		// if (raycasting && Time.time >= timestamp) {
-		// 	Destroy(hit.transform.gameObject);
-		// 	Debug.Log("Dead");
-		// }
 	}
 }

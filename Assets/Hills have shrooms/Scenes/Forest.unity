@@ -2064,7 +2064,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.022058845, g: 0.020923464, b: 0.022058845, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -6866,6 +6866,7 @@ MonoBehaviour:
   healthDepletion: 1
   healthText: {fileID: 2095729189}
   sanityText: {fileID: 1874425750}
+  flashlight: {fileID: 0}
 --- !u!4 &1491066187 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400046, guid: 56be6f148bc409e4eb1a8144361f9fcd, type: 3}
@@ -9840,7 +9841,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4038708586992042, guid: 91d06665fd0708e4e9c342ff512c62d8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.17
+      value: 152.5
       objectReference: {fileID: 0}
     - target: {fileID: 4038708586992042, guid: 91d06665fd0708e4e9c342ff512c62d8, type: 2}
       propertyPath: m_LocalPosition.y
@@ -9872,7 +9873,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4038708586992042, guid: 91d06665fd0708e4e9c342ff512c62d8, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2.7066593
+      value: 29.109566
       objectReference: {fileID: 0}
     - target: {fileID: 4038708586992042, guid: 91d06665fd0708e4e9c342ff512c62d8, type: 2}
       propertyPath: m_LocalScale.y
@@ -9880,7 +9881,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4038708586992042, guid: 91d06665fd0708e4e9c342ff512c62d8, type: 2}
       propertyPath: m_LocalScale.z
-      value: 8.752659
+      value: 42.84767
       objectReference: {fileID: 0}
     - target: {fileID: 1658103307775694, guid: 91d06665fd0708e4e9c342ff512c62d8, type: 2}
       propertyPath: m_StaticEditorFlags
