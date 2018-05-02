@@ -62,6 +62,7 @@ public class PlayerClass : MonoBehaviour {
 			// other.gameObject.GetType
 			Destroy(other.gameObject);			
 		}
+		
 		// COLLECTING HEALTH MUSHROOM
 		else if(other.gameObject.tag == "healthMushroom"){
 			Debug.Log("Health:" + currentHealth.ToString());
